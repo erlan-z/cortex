@@ -3272,6 +3272,14 @@ query_priority:
 
   # List of priority definitions.
   [priorities: <list of PriorityDef> | default = []]
+  
+query_rejection:
+  # Enables query rejection for tenant.
+  # CLI flag: -frontend.query-rejection.enabled
+  [enabled: <boolean> | default = false]
+
+  # List of query attributes that defines which queries should be rejected. Query will be rejected if it matches any of the attributes
+  [query_attributes: <list of QueryAttribute> | default = []]
 
 # Duration to delay the evaluation of rules to ensure the underlying metrics
 # have been pushed to Cortex.
@@ -5353,6 +5361,22 @@ time_window:
   # lookback delta) that the query should be within. If set to 0, it won't be
   # checked.
   [end: <int> | default = 0]
+
+# Limit that query step should be within. It will check subquery steps as well. If not set it won't be checked
+query_step_limit: 
+  # Query step should be above or equal to this value to match. If set to 0, it won't be checked. 
+  [min: <duration> | default = 0]
+  # Query step should be below or equal to this value to match. If set to 0, it won't be checked. 
+  [max: <duration> | default = 0]
+
+# Query's User-Agent should match this value. If not set, it won't be checked
+[user_agent: <string> | default = ""]
+
+# Query's X-Dashboard-Uid should match this value. If not set, it won't be checked
+[dashboard_uid: <string> | default = ""]
+
+# Query's X-Panel-Id should match this value. If not set, it won't be checked
+[panel_id: <string> | default = ""]
 ```
 
 ### `DisabledRuleGroup`

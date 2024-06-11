@@ -256,6 +256,10 @@ func (m mockLimits) QueryPriority(userID string) validation.QueryPriority {
 	return validation.QueryPriority{}
 }
 
+func (m mockLimits) QueryRejection(userID string) validation.QueryRejection {
+	return validation.QueryRejection{}
+}
+
 type mockHandler struct {
 	mock.Mock
 }
